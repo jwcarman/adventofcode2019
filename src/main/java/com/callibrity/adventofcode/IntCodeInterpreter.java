@@ -1,27 +1,9 @@
 package com.callibrity.adventofcode;
 
-import javax.sound.sampled.FloatControl;
 import java.util.Arrays;
 import java.util.List;
 
 public class IntCodeInterpreter {
-
-    public void execute(List<Integer> program) {
-        for (int base = 0; !program.get(base).equals(99); base += 4) {
-            final int opcode = program.get(base);
-            final int inputPos1 = program.get(base + 1);
-            final int inputPos2 = program.get(base + 2);
-            final int input1 = program.get(inputPos1);
-            final int input2 = program.get(inputPos2);
-            int location = program.get(base + 3);
-            final int result = switch (opcode) {
-                case 1 -> input1 + input2;
-                case 2 -> input1 * input2;
-                default -> throw new IllegalArgumentException(String.format("Opcode %d is not supported.", opcode));
-            };
-            program.set(location, result);
-        }
-    }
 
     public static void main(String[] args) {
         final List<Integer> program = Arrays.asList(
@@ -73,5 +55,22 @@ public class IntCodeInterpreter {
         IntCodeInterpreter interpreter = new IntCodeInterpreter();
         interpreter.execute(program);
         System.out.println(program.get(0));
+    }
+
+    public void execute(List<Integer> program) {
+        for (int base = 0; !program.get(base).equals(99); base += 4) {
+            final int opcode = program.get(base);
+            final int inputPos1 = program.get(base + 1);
+            final int inputPos2 = program.get(base + 2);
+            final int input1 = program.get(inputPos1);
+            final int input2 = program.get(inputPos2);
+            int location = program.get(base + 3);
+            final int result = switch (opcode) {
+                case 1 -> input1 + input2;
+                case 2 -> input1 * input2;
+                default -> throw new IllegalArgumentException(String.format("Opcode %d is not supported.", opcode));
+            };
+            program.set(location, result);
+        }
     }
 }
