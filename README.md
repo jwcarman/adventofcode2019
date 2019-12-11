@@ -7,3 +7,5 @@ Day 1: [The Tyranny of the Rocket Equation](src/main/java/com/callibrity/advento
 Day 2: [1202 Program Alarm](src/main/java/com/callibrity/adventofcode/IntCodeInterpreter.java)
 
 Day 3: [Crossed Wires](src/main/java/com/callibrity/adventofcode/WirePaths.java)
+
+Day 4: [Secure Container](src/main/java/com/callibrity/adventofcode/PasswordValidator.java)
