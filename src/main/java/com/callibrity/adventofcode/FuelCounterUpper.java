@@ -1,17 +1,10 @@
 package com.callibrity.adventofcode;
 
-import com.callibrity.adventofcode.input.Input;
-
 import java.util.List;
 
 import static java.lang.Math.floorDiv;
 
 public class FuelCounterUpper {
-
-    public static void main(String[] args) {
-        FuelCounterUpper fuelCounterUpper = new FuelCounterUpper();
-        System.out.println(fuelCounterUpper.countUpFuel(Input.toLines(System.in, Long::parseLong)));
-    }
 
     public long countUpFuel(List<Long> masses) {
         return masses.stream()
@@ -19,7 +12,16 @@ public class FuelCounterUpper {
                 .sum();
     }
 
-    public long calculateFuel(long mass) {
+    public long calculateSimpleFuel(long mass) {
         return floorDiv(mass, 3) - 2;
+    }
+
+    public long calculateFuel(long mass) {
+        if(mass < 9) {
+            return 0;
+        }
+        final long fuel = floorDiv(mass, 3) - 2;
+
+        return fuel + calculateFuel(fuel);
     }
 }

@@ -1,15 +1,17 @@
 package com.callibrity.adventofcode;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
-public class PasswordValidator {
+public class StrictPasswordValidator {
 
     public boolean isValid(String password) {
         return Optional.ofNullable(password)
                 .filter(p -> p.length() == 6)
                 .map(p -> {
                     final StringBuilder chunk = new StringBuilder();
-                    boolean multi = false;
+                    boolean doubles = false;
                     for (int i = 0; i < 6; ++i) {
                         final char c = p.charAt(i);
                         if (chunk.length() == 0 || chunk.charAt(0) == c) {
@@ -17,18 +19,17 @@ public class PasswordValidator {
                         } else if (chunk.charAt(0) > c) {
                             return false;
                         } else {
-                            if(chunk.length() > 1) {
-                                multi = true;
+                            if(chunk.length() == 2) {
+                                doubles = true;
                             }
                             chunk.setLength(0);
                             chunk.append(c);
                         }
                     }
 
-                    return multi || chunk.length() > 1;
+                    return doubles || chunk.length() == 2;
                 })
                 .orElse(false);
     }
-
 
 }

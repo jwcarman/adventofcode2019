@@ -22,9 +22,9 @@ class FuelCounterUpperTest {
     @Test
     void calculateFuel() {
         final FuelCounterUpper fuelCounterUpper = new FuelCounterUpper();
-        assertThat(fuelCounterUpper.calculateFuel(12)).isEqualTo(2);
         assertThat(fuelCounterUpper.calculateFuel(14)).isEqualTo(2);
-        assertThat(fuelCounterUpper.calculateFuel(1969)).isEqualTo(654);
-        assertThat(fuelCounterUpper.calculateFuel(100756)).isEqualTo(33583);
+        assertThat(fuelCounterUpper.calculateFuel(1969)).isEqualTo(966);
+        assertThat(fuelCounterUpper.calculateFuel(100756)).isEqualTo(50346);
+
     }
 }
