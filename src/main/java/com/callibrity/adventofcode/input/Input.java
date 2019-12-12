@@ -20,7 +20,7 @@ public class Input {
         return parser.apply(readLine(stream));
     }
 
-    public static List<String> toLines(Reader reader) {
+    public static List<String> readLines(Reader reader) {
         try (BufferedReader br = new BufferedReader(reader)) {
             return br.lines().collect(Collectors.toList());
         } catch (IOException e) {
@@ -28,11 +28,11 @@ public class Input {
         }
     }
 
-    public static <T> List<T> toLines(Reader stream, Function<String, T> parser) {
-        return toLines(stream).stream().map(parser).collect(Collectors.toList());
+    public static <T> List<T> readLines(Reader stream, Function<String, T> parser) {
+        return readLines(stream).stream().map(parser).collect(Collectors.toList());
     }
 
-    public static <T> List<T> toLines(InputStream stream, Function<String, T> parser) {
-        return toLines(new InputStreamReader(stream, StandardCharsets.UTF_8), parser);
+    public static <T> List<T> readLines(InputStream stream, Function<String, T> parser) {
+        return readLines(new InputStreamReader(stream, StandardCharsets.UTF_8), parser);
     }
 }

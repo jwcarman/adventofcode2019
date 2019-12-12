@@ -113,7 +113,7 @@ public class Day1 {
     @Test
     void part1() {
         final FuelCounterUpper counterUpper = new FuelCounterUpper();
-        final List<Long> masses = Input.toLines(new StringReader(INPUT), Long::parseLong);
+        final List<Long> masses = Input.readLines(new StringReader(INPUT), Long::parseLong);
         System.out.println(masses.stream()
                 .mapToLong(counterUpper::calculateSimpleFuel)
                 .sum());
@@ -122,7 +122,7 @@ public class Day1 {
     @Test
     void part2() {
         final FuelCounterUpper counterUpper = new FuelCounterUpper();
-        final List<Long> masses = Input.toLines(new StringReader(INPUT), Long::parseLong);
+        final List<Long> masses = Input.readLines(new StringReader(INPUT), Long::parseLong);
         System.out.println(masses.stream()
                 .mapToLong(counterUpper::calculateFuel)
                 .sum());
