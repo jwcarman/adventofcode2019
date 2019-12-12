@@ -21,7 +21,7 @@ class DefaultOperationFactoryTest {
 
     @Test
     void opcode3() {
-        assertThat(factory.createOperation(3)).isExactlyInstanceOf(SaveInput.class);
+        assertThat(factory.createOperation(3)).isExactlyInstanceOf(StoreInput.class);
     }
 
     @Test

@@ -5,7 +5,7 @@ public class DefaultOperationFactory implements OperationFactory {
         return switch (opcode) {
             case 1 -> new Addition();
             case 2 -> new Multiplication();
-            case 3 -> new SaveInput();
+            case 3 -> new StoreInput();
             case 4 -> new OutputParameter();
             case 5 -> new JumpIfTrue();
             case 6 -> new JumpIfFalse();

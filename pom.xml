@@ -16,6 +16,7 @@
         <maven.compiler.target>13</maven.compiler.target>
 
         <assertj.version>3.13.2</assertj.version>
+        <commons.collections4.version>4.4</commons.collections4.version>
         <commons.lang3.version>3.9</commons.lang3.version>
         <guava.version>28.1-jre</guava.version>
         <junit.version>5.4.0</junit.version>
@@ -25,6 +26,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>${commons.collections4.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>

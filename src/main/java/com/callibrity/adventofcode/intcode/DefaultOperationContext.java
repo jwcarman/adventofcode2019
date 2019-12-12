@@ -1,25 +1,25 @@
 package com.callibrity.adventofcode.intcode;
 
-import com.callibrity.adventofcode.input.Input;
-import com.callibrity.adventofcode.input.Output;
 import com.callibrity.adventofcode.intcode.ops.OperationContext;
+import com.google.common.util.concurrent.Uninterruptibles;
+import lombok.extern.slf4j.Slf4j;
 
-import java.io.Reader;
-import java.io.Writer;
+import java.util.concurrent.BlockingQueue;
 
+@Slf4j
 public class DefaultOperationContext implements OperationContext {
 
     private final IntCodeProgramState memory;
     private int parameterModes;
     private boolean complete = false;
-    private final Reader input;
-    private final Writer output;
+    private final BlockingQueue<Integer> inputQueue;
+    private final BlockingQueue<Integer> outputQueue;
 
-    public DefaultOperationContext(IntCodeProgramState memory, int parameterModes, Reader input, Writer output) {
+    public DefaultOperationContext(IntCodeProgramState memory, int parameterModes, BlockingQueue<Integer> inputQueue, BlockingQueue<Integer> outputQueue) {
         this.memory = memory;
         this.parameterModes = parameterModes;
-        this.input = input;
-        this.output = output;
+        this.inputQueue = inputQueue;
+        this.outputQueue = outputQueue;
     }
 
     @Override
@@ -43,12 +43,15 @@ public class DefaultOperationContext implements OperationContext {
 
     @Override
     public int input() {
-        return Input.readLine(input, Integer::parseInt);
+        log.debug("Requesting input...");
+        final Integer input = Uninterruptibles.takeUninterruptibly(inputQueue);
+        log.debug("Recieved input {}.", input);
+        return input;
     }
 
     @Override
     public void output(int value) {
-        Output.println(output, value);
+        Uninterruptibles.putUninterruptibly(outputQueue, value);
     }
 
     @Override

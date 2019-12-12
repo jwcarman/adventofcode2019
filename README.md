@@ -13,3 +13,5 @@ Day 4: [Secure Container](src/test/java/com/callibrity/adventofcode/Day4.java)
 Day 5: [Sunny with a Chance of Asteroids](src/test/java/com/callibrity/adventofcode/Day5.java)
 
 Day 6: [Universal Orbit Map](src/test/java/com/callibrity/adventofcode/Day6.java)
+
+Day 7: [Amplification Circuit](src/test/java/com/callibrity/adventofcode/Day7.java)

@@ -8,11 +8,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class SaveInputTest {
+class StoreInputTest {
 
     @Test
     void storesInput(@Mock OperationContext context) {
-        SaveInput op = new SaveInput();
+        StoreInput op = new StoreInput();
         when(context.input()).thenReturn(21212);
         op.execute(context);
         verify(context).input();
