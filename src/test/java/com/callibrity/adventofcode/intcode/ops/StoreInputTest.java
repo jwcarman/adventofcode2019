@@ -13,7 +13,7 @@ class StoreInputTest {
     @Test
     void storesInput(@Mock OperationContext context) {
         StoreInput op = new StoreInput();
-        when(context.input()).thenReturn(21212);
+        when(context.input()).thenReturn(21212L);
         op.execute(context);
         verify(context).input();
         verify(context).storeValue(21212);

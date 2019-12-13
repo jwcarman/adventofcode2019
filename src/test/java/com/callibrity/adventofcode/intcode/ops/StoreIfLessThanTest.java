@@ -14,7 +14,7 @@ class StoreIfLessThanTest {
     @Test
     void whenLessThan(@Mock OperationContext context) {
         StoreIfLessThan operation = new StoreIfLessThan();
-        when(context.nextParameter()).thenReturn(1,2);
+        when(context.nextParameter()).thenReturn(1L, 2L);
 
         operation.execute(context);
 
@@ -26,7 +26,7 @@ class StoreIfLessThanTest {
     @Test
     void whenEqual(@Mock OperationContext context) {
         StoreIfLessThan operation = new StoreIfLessThan();
-        when(context.nextParameter()).thenReturn(1,1);
+        when(context.nextParameter()).thenReturn(1L, 1L);
 
         operation.execute(context);
 
@@ -38,7 +38,7 @@ class StoreIfLessThanTest {
     @Test
     void whenGreaterThan(@Mock OperationContext context) {
         StoreIfLessThan operation = new StoreIfLessThan();
-        when(context.nextParameter()).thenReturn(2,1);
+        when(context.nextParameter()).thenReturn(2L, 1L);
 
         operation.execute(context);
 

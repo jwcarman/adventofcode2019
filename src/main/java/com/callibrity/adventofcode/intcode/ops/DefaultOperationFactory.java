@@ -11,6 +11,7 @@ public class DefaultOperationFactory implements OperationFactory {
             case 6 -> new JumpIfFalse();
             case 7 -> new StoreIfLessThan();
             case 8 -> new StoreIfEquals();
+            case 9 -> new AdjustRelativeBase();
             case 99 -> new Stop();
             default -> throw new IllegalArgumentException(String.format("Opcode %d not supported.", opcode));
         };

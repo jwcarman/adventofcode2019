@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 public class StoreInput implements Operation {
     @Override
     public void execute(OperationContext context) {
-        final int input = context.input();
+        final long input = context.input();
         context.storeValue(input);
     }
 }

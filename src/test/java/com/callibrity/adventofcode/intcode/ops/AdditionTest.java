@@ -13,7 +13,7 @@ class AdditionTest {
     @Test
     void multiplies(@Mock OperationContext context) {
         Addition op = new Addition();
-        when(context.nextParameter()).thenReturn(6, 3);
+        when(context.nextParameter()).thenReturn(6L, 3L);
 
         op.execute(context);
         verify(context, times(2)).nextParameter();

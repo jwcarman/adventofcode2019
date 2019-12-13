@@ -13,7 +13,7 @@ class OutputParameterTest {
     @Test
     void outputsParameter(@Mock OperationContext context) {
         OutputParameter op  =new OutputParameter();
-        when(context.nextParameter()).thenReturn(12);
+        when(context.nextParameter()).thenReturn(12L);
         op.execute(context);
         verify(context).nextParameter();
         verify(context).output(12);

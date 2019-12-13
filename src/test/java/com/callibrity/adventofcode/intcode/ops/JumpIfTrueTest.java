@@ -13,7 +13,7 @@ class JumpIfTrueTest {
     @Test
     void jumpsWhenTrue(@Mock OperationContext context) {
         JumpIfTrue op = new JumpIfTrue();
-        when(context.nextParameter()).thenReturn(1, 12);
+        when(context.nextParameter()).thenReturn(1L, 12L);
 
         op.execute(context);
 
@@ -25,7 +25,7 @@ class JumpIfTrueTest {
     @Test
     void doesNothingWhenFalse(@Mock OperationContext context) {
         JumpIfTrue op = new JumpIfTrue();
-        when(context.nextParameter()).thenReturn(0, 12);
+        when(context.nextParameter()).thenReturn(0L, 12L);
 
         op.execute(context);
 

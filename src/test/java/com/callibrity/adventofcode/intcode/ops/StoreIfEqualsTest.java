@@ -13,7 +13,7 @@ class StoreIfEqualsTest {
     @Test
     void whenEqualsStoresOne(@Mock OperationContext context) {
         StoreIfEquals op = new StoreIfEquals();
-        when(context.nextParameter()).thenReturn(2,2);
+        when(context.nextParameter()).thenReturn(2L, 2L);
         op.execute(context);
         verify(context, times(2)).nextParameter();
         verify(context).storeValue(1);
@@ -23,7 +23,7 @@ class StoreIfEqualsTest {
     @Test
     void whenNotEqualsStoresZero(@Mock OperationContext context) {
         StoreIfEquals op = new StoreIfEquals();
-        when(context.nextParameter()).thenReturn(2222,2);
+        when(context.nextParameter()).thenReturn(2222L, 2L);
         op.execute(context);
         verify(context, times(2)).nextParameter();
         verify(context).storeValue(0);
