@@ -15,3 +15,5 @@ Day 5: [Sunny with a Chance of Asteroids](src/test/java/com/callibrity/adventofc
 Day 6: [Universal Orbit Map](src/test/java/com/callibrity/adventofcode/Day6.java)
 
 Day 7: [Amplification Circuit](src/test/java/com/callibrity/adventofcode/Day7.java)
+
+Day 8: [Space Image Format](src/test/java/com/callibrity/adventofcode/Day8.java)
