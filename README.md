@@ -19,3 +19,5 @@ Day 7: [Amplification Circuit](src/test/java/com/callibrity/adventofcode/Day7.ja
 Day 8: [Space Image Format](src/test/java/com/callibrity/adventofcode/Day8.java)
 
 Day 9: [Sensor Boost](src/test/java/com/callibrity/adventofcode/Day9.java)
+
+Day 10: [Monitoring Station](src/test/java/com/callibrity/adventofcode/Day10.java)
