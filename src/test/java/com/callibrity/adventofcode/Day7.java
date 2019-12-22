@@ -1,6 +1,8 @@
 package com.callibrity.adventofcode;
 
 import com.callibrity.adventofcode.intcode.IntCodeInterpreter;
+import com.callibrity.adventofcode.intcode.io.BlockingQueueInputSupplier;
+import com.callibrity.adventofcode.intcode.io.BlockingQueueOutputConsumer;
 import com.google.common.util.concurrent.Uninterruptibles;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.iterators.PermutationIterator;
@@ -49,7 +51,7 @@ public class Day7 {
 
     private void runInterpreter(IntCodeInterpreter interpreter, BlockingQueue<Long> input, BlockingQueue<Long> output, CountDownLatch latch) {
         new Thread(() -> {
-            interpreter.execute(input, output);
+            interpreter.execute(new BlockingQueueInputSupplier(input), new BlockingQueueOutputConsumer(output));
             latch.countDown();
         }).start();
     }
@@ -70,7 +72,7 @@ public class Day7 {
             final BlockingQueue<Long> inputQueue = new LinkedBlockingDeque<>(Arrays.asList(phaseSetting, inputSignal));
             final BlockingQueue<Long> outputQueue = new LinkedBlockingDeque<>();
             final IntCodeInterpreter interpreter = createInterpreter();
-            interpreter.execute(inputQueue, outputQueue);
+            interpreter.execute(new BlockingQueueInputSupplier(inputQueue), new BlockingQueueOutputConsumer(outputQueue));
             return outputQueue.remove();
         });
     }

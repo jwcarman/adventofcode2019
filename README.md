@@ -21,3 +21,5 @@ Day 8: [Space Image Format](src/test/java/com/callibrity/adventofcode/Day8.java)
 Day 9: [Sensor Boost](src/test/java/com/callibrity/adventofcode/Day9.java)
 
 Day 10: [Monitoring Station](src/test/java/com/callibrity/adventofcode/Day10.java)
+
+Day 11: [Space Police](src/test/java/com/callibrity/adventofcode/Day11.java)

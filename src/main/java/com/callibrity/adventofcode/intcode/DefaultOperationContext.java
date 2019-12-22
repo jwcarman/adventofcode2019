@@ -1,10 +1,10 @@
 package com.callibrity.adventofcode.intcode;
 
 import com.callibrity.adventofcode.intcode.ops.OperationContext;
-import com.google.common.util.concurrent.Uninterruptibles;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.concurrent.BlockingQueue;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 @Slf4j
 public class DefaultOperationContext implements OperationContext {
@@ -12,14 +12,14 @@ public class DefaultOperationContext implements OperationContext {
     private final IntCodeProgramState state;
     private int parameterModes;
     private boolean complete = false;
-    private final BlockingQueue<Long> inputQueue;
-    private final BlockingQueue<Long> outputQueue;
+    private final Supplier<Long> inputSupplier;
+    private final Consumer<Long> outputConsumer;
 
-    public DefaultOperationContext(IntCodeProgramState state, int parameterModes, BlockingQueue<Long> inputQueue, BlockingQueue<Long> outputQueue) {
+    public DefaultOperationContext(IntCodeProgramState state, int parameterModes, Supplier<Long> inputSupplier, Consumer<Long> outputConsumer) {
         this.state = state;
         this.parameterModes = parameterModes;
-        this.inputQueue = inputQueue;
-        this.outputQueue = outputQueue;
+        this.inputSupplier = inputSupplier;
+        this.outputConsumer = outputConsumer;
     }
 
     private int nextParameterMode() {
@@ -43,28 +43,23 @@ public class DefaultOperationContext implements OperationContext {
         final long position = state.readNextValue();
         final int parameterMode = nextParameterMode();
         switch (parameterMode) {
-            case 0:
-                state.writeValue(position, value);
-                break;
-            case 2:
-                state.writeRelativeValue(position, value);
-                break;
-            default:
-                throw new IllegalArgumentException(String.format("Parameter mode %d not supported for writing.", parameterMode));
+            case 0 -> state.writeValue(position, value);
+            case 2 -> state.writeRelativeValue(position, value);
+            default -> throw new IllegalArgumentException(String.format("Parameter mode %d not supported for writing.", parameterMode));
         }
     }
 
     @Override
     public long input() {
         log.debug("Requesting input...");
-        final Long input = Uninterruptibles.takeUninterruptibly(inputQueue);
+        final Long input = inputSupplier.get();
         log.debug("Recieved input {}.", input);
         return input;
     }
 
     @Override
     public void output(long value) {
-        Uninterruptibles.putUninterruptibly(outputQueue, value);
+        outputConsumer.accept(value);
     }
 
     @Override

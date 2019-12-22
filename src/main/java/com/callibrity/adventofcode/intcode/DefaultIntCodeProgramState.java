@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 @Slf4j
 public class DefaultIntCodeProgramState implements IntCodeProgramState {
@@ -15,8 +16,8 @@ public class DefaultIntCodeProgramState implements IntCodeProgramState {
     private long instructionPointer = 0L;
     private long relativeBase = 0L;
 
-    public DefaultIntCodeProgramState(int... values) {
-        this(IntStream.of(values).mapToLong(i -> i).boxed().collect(Collectors.toList()));
+    public DefaultIntCodeProgramState(long... values) {
+        this(LongStream.of(values).boxed().collect(Collectors.toList()));
     }
 
     public DefaultIntCodeProgramState(final List<Long> memory) {
